@@ -1,0 +1,107 @@
+body {
+  font-family: 'Oswald', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #333;
+  color: #fff;
+}
+
+header {
+  background-color: #222;
+  color: #fff;
+  padding: 20px;
+}
+
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li {
+  display: inline-block;
+  margin-right: 20px;
+}
+
+nav ul li a {
+  color: #fff;
+  text-decoration: none;
+}
+
+nav ul li a:hover {
+  color: #ccc;
+}
+
+main section {
+  background-color: #444;
+  color: #fff;
+  padding: 20px;
+  border-bottom: 1px solid #ccc;
+}
+
+footer {
+  background-color: #222;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+}
+
+section {
+  color: #fff;
+  background-color: #444;
+}
+
+section {
+  font-family: Arial,;
+  font-size: 18px;
+}
+
+section {
+  padding: 20px;
+}
+
+section p {
+  margin-bottom: 10px;
+}
+
+footer .copyright {
+  font-size: 6px;
+}
+/* Styl dla przycisków */
+ /* Styl przycisków do zmiany pędzli */
+  .brush-button {
+    display: inline-block;
+    padding: 0;
+    margin-right: 10px;
+    border: none;
+    cursor: pointer;
+  }
+
+  .brush-button img {
+    width: 30px;
+    height: 30px;
+  }
+
+/* Ukryj domyślny wygląd przycisku wyboru koloru */
+input[type="color"] {
+  appearance: none;
+  -webkit-appearance: none;
+  border: none;
+  padding: 0;
+  background: none;
+}
+
+/* Stylizuj przycisk wyboru koloru */
+input[type="color"]::after {
+display: inline-block;
+  padding: 10px;
+  margin-right: 10px;
+  background-color: #4e4d4d;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200&display=swap');
+}

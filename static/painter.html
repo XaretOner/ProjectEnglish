@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Painter App</title>
+   <style>
+     canvas {
+      border: 1px solid black;
+    }
+   
+  /* Ukryj prostokąt wyboru koloru */
+  input[type="color"] {
+    display: none;
+  }
+    
+    .image-button {
+      background-image: url("photos/cp.png");
+      background-size: cover;
+      width: 50px; /* Dostosuj szerokość i wysokość do obrazka */
+      height: 50px;
+      cursor: pointer;
+    }
+  </style>
+  <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+		<h1>Painter</h1>
+		<nav>
+			<ul>
+				<li><a href="http://127.0.0.1:5000">Main page</a></li>
+				<li><a href="Podcast.html">Podcast</a></li>
+			</ul>
+		</nav>
+	</header>
+
+  <canvas  id="canvas" width="1493" height="500"></canvas>
+  <button class=".brush-button" id="clearBtn"><img src="photos/clear.png"/></button>
+  <button class=".brush-button" id="circleBtn"><img src="photos/circle.png"/> </button>
+  
+  <button class=".brush-button" id="squareBtn"><img src="photos/square.png"/> </button>
+  <button class=".brush-button" id="rectangleBtn"><img src="photos/rectangle.png"/> </button>
+  <label for="colorPicker" class="image-button"></label>
+  
+   <label for="colorPicker">
+    <img src="photos/cp.png" alt="Button Image">
+  </label>
+  
+  <input type="color" id="colorPicker">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      var canvas = document.getElementById("canvas");
+      var context = canvas.getContext("2d");
+      var isDrawing = false;
+
+      // Funkcja do rysowania na płótnie
+      function draw(x, y, color, size, shape) {
+        context.fillStyle = color;
+        if (shape === "circle") {
+          context.beginPath();
+          context.arc(x, y, size, 0, 2 * Math.PI);
+          context.fill();
+        } else if (shape === "square") {
+          context.fillRect(x - size, y - size, 2 * size, 2 * size);
+        } else if (shape === "rectangle") {
+          context.fillRect(x - size, y - size / 2, 2 * size, size);
+        }
+      }
+
+      // Funkcja do czyszczenia płótna
+      function clearCanvas() {
+        context.clearRect(0, 0, canvas.width, canvas.height);
+      }
+
+      // Obsługa zdarzenia kliknięcia na płótno
+      canvas.addEventListener("mousedown", function(event) {
+        var x = event.pageX - canvas.offsetLeft;
+        var y = event.pageY - canvas.offsetTop;
+        var color = document.getElementById("colorPicker").value;
+        var size = 5;
+        var shape = getCurrentShape();
+        isDrawing = true;
+        draw(x, y, color, size, shape);
+      });
+
+      // Obsługa zdarzenia przesuwania myszy na płótnie
+      canvas.addEventListener("mousemove", function(event) {
+        if (isDrawing) {
+          var x = event.pageX - canvas.offsetLeft;
+          var y = event.pageY - canvas.offsetTop;
+          var color = document.getElementById("colorPicker").value;
+          var size = 5;
+          var shape = getCurrentShape();
+          draw(x, y, color, size, shape);
+        }
+      });
+
+      // Obsługa zdarzenia puszczenia przycisku myszy
+      canvas.addEventListener("mouseup", function() {
+        isDrawing = false;
+      });
+
+      // Obsługa zdarzenia opuszczenia obszaru płótna przez kursor myszy
+      canvas.addEventListener("mouseleave", function() {
+        isDrawing = false;
+      });
+
+      // Funkcja do pobierania aktualnego kształtu
+      function getCurrentShape() {
+        var circleBtn = document.getElementById("circleBtn");
+        var squareBtn = document.getElementById("squareBtn");
+        var rectangleBtn = document.getElementById("rectangleBtn");
+        if (circleBtn.classList.contains("active")) {
+          return "circle";
+        } else if (squareBtn.classList.contains("active")) {
+          return "square";
+        } else if (rectangleBtn.classList.contains("active")) {
+          return "rectangle";
+        }
+        return "circle"; // Domyślny kształt
+      }
+
+      // Obsługa zdarzenia kliknięcia przycisku "Wyczyść płótno"
+      document.getElementById("clearBtn").addEventListener("click", function() {
+        clearCanvas();
+      });
+
+      // Obsługa zdarzenia kliknięcia przycisków zmiany kształtu
+      var shapeBtns = document.querySelectorAll("#circleBtn, #squareBtn, #rectangleBtn");
+      shapeBtns.forEach(function(btn) {
+        btn.addEventListener("click", function() {
+          shapeBtns.forEach(function(btn) {
+            btn.classList.remove("active");
+          });
+          this.classList.add("active");
+        });
+      });
+    });
+  </script>
+</body>
+</html>

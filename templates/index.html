@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>News</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+	<header>
+		<h1>NEWS</h1>
+		<nav>
+			<ul>
+				<li><a href="{{ url_for('static', filename='podcast.html') }}">Podcast</a></li>
+				<li><a href="{{ url_for('static', filename='painter.html') }}">Painter</a></li>
+			</ul>
+		</nav>
+	</header>
+
+	<main>
+		<section>
+		<p>Chat GPT and Exams.</p>
+			<h2><a href="{{ url_for('static', filename='news1.html') }}"><img src="{{ url_for('static', filename='photos/Robot.png') }}" style="width: 25%; height: auto;"></a></h2>
+			<p>photo made by ai craiyon.com</p>
+		</section>
+
+		<section>
+		<p>Is Opera One a revolution in the world of web browsers?</p>
+			<h2><a href="{{ url_for('static', filename='news2.html') }}"><img src="{{ url_for('static', filename='photos/OperaOneMain.jpeg') }}" style="width: 35%; height: auto;"></a></h2>
+			<p>photo made by Opera.com<p>
+		</section>
+	</main>
+
+	<footer>
+		<p>Copyright &copy; 2023 <br> Marcin Błoński Jakub Stanik Oskar Hen Michał Wnuczko</p>
+	</footer>
+
+</body>
+</html>
